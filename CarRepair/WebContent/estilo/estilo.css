@@ -1,0 +1,338 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+h1 {
+	color: #999;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	text-align: right;
+}
+
+h2 {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	text-align: center;
+	color: #999;
+}
+
+h3 {
+	color: #999;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 100%;
+}
+
+h4 {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #999;
+	text-align: center;
+	margin: 0px auto;
+}
+
+h6 {
+	color: #333;
+	background: #FCF;
+	margin-right: 50px;
+	margin-left: 50px;
+	font: 60% "Trebuchet MS", Arial, Helvetica, sans-serif;
+	padding: 5px;
+}
+
+textarea {
+	padding: 5px;
+}
+
+#geral {
+	height: auto;
+	width: 980px;
+	margin: 0px auto;
+}
+
+#topo {
+	text-align: center;
+	height: 128px;
+	width: 980px;
+}
+
+#topo_imagem {
+	background-image: url(../imagens/mecanico.png);
+	background-repeat: no-repeat;
+	width: 180px;
+	height: 180px;
+	float: left;
+	margin-left: 100px;
+}
+
+#topo_texto {
+	height: 128px;
+	padding-left: 30px;
+	width: 300px;
+	float: left;
+}
+
+#barraMenu {
+	height: 39px;
+	width: 900px;
+	padding: 0px;
+	border-top: 1px solid #666;
+	border-bottom: 1px solid #666;
+	background: #FFF;
+	margin-top: 0px;
+	margin-right: 40px;
+	margin-bottom: 0px;
+	margin-left: 40px;
+}
+
+#barraMenu ul li a:hover {
+	color: #FFF;
+	background: #666;
+}
+
+#barraMenu ul {
+	margin: 0px;
+	padding: 0px;
+}
+
+#barraMenu li {
+	list-style: none;
+	float: left;
+}
+
+#barraMenu li a {
+	font: 16px "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #666;
+	text-decoration: none;
+	display: block;
+	padding: 10px;
+	margin: 0px;
+}
+
+#conteudo {
+	width: 100% padding-top: 5px;
+	border: 1px solid #E1E1E1;
+	text-align: center;
+	padding: 5px;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	radius: 10px;
+}
+
+#rodape {
+	height: 40px;
+	width: 980px;
+	font: 10px "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #333;
+	text-align: center;
+	margin: 0px;
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+
+table {
+	margin-right: auto;
+	margin-left: auto;
+	text-align: left;
+	border-radius: 5px;
+}
+
+form {
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* DefiniÃ§Ã£o de estilos para toda a tabela da pagina index*/
+.tabela {
+	font-size: 80%;
+	border: 1px solid #808080;
+	border-radius: 5px;
+}
+
+.tabela	tr:nth-child(odd) {
+	background-color: #ffffff;
+}
+
+.tabela tr:nth-child(even) {
+	background-color: #e4e3f9;
+}
+
+/* DefiniÃ§Ã£o de estilos para linha de cabeçalho da tabela*/
+.cabecalho {
+	text-align: center;
+	font-weight: bold;
+	color: Snow;
+	background: #3498DB;
+	padding: 5px;
+}
+
+.placa {
+	padding: 5px;
+	width: 80px;
+	text-align: center;
+}
+
+.marca {
+	padding: 5px;
+	width: 130px;
+	text-align: center;
+}
+
+.modelo {
+	padding: 5px;
+	width: 130px;
+	text-align: center;
+}
+
+.afab {
+	padding: 5px;
+	width: 80px;
+	text-align: center;
+}
+
+.amod {
+	padding: 5px;
+	width: 80px;
+	text-align: center;
+}
+
+.status {
+	padding: 5px;
+	width: 100px;
+	text-align: center;
+}
+
+.data {
+	padding: 5px;
+	width: 60px;
+	text-align: center;
+	text-align: center;
+}
+
+.nfiscal {
+	padding: 5px;
+	width: 50px;
+	text-align: center;
+}
+
+.codigo {
+	padding: 5px;
+	width: 80px;
+	text-align: center;
+}
+
+.nome {
+	padding: 5px;
+	width: 200px;
+}
+
+.qtde {
+	padding: 5px;
+	width: 30px;
+	text-align: right;
+}
+
+.valor {
+	padding: 5px;
+	width: 80px;
+	text-align: right;
+}
+
+.descricao {
+	padding: 5px;
+	width: 500px;
+}
+
+.total {
+	padding: 5px;
+	width: 80px;
+	text-align: right;
+}
+
+*:focus {
+	outline: none;
+}
+
+.app-title h2 {
+	color: #f3f3f3;
+}
+
+.control-group {
+	margin-bottom: 10px;
+}
+
+input {
+	background-color: #f3f3f3;
+	border: 1px solid;
+	border-radius: 3px;
+	font-size: 14px;
+	font-weight: 200;
+	padding: 3px;
+	transition: border .5s;
+}
+
+input:hover {
+ 	border: 1px solid #3498DB; 
+	background-color: #dad8ed;
+	border-radius: 3px;
+}
+
+input:focus {
+	border: 1px solid #3498DB;
+	box-shadow: none;
+	background-color: #d5e1f0;
+}
+
+input[type="submit"]:hover {
+	border: 1px solid #3498DB;
+	background-color: #3498DB;
+	color: #f3f3f3;
+	border-radius: 3px;
+}
+
+.btn {
+	border: 0px solid transparent;
+	box-shadow: none;
+	width: 250px;
+	line-height: 45px;
+	padding: 0px;
+	font-size: 16px;
+	color: #4e4e4e;
+}
+
+#formLogin input:hover[type="submit"]  {
+	border: 0px solid transparent;
+	background-color: #2980B9;
+	color: #f3f3f3;
+	border-radius: 3px;
+}
+
+.login-screen {
+	background-color: #3498DB;
+	margin: 20px auto;
+	padding: 50px;
+	border-radius: 10px;
+	width: 300px;
+}
+
+.login-screen .txt {
+	border: 0px solid transparent;
+	font-size: 16px;
+	padding: 10px;
+	text-decoration: none;
+	text-shadow: none;
+	text-align: center;
+	width: 230px;
+	line-height: 25px;
+}
+
+body#index a#ind, body#veiculo a#vei, body#cliente a#cli, body#manter a#man,
+	body#consulta a#con, body#lista a#lis {
+	cursor: default;
+	color: #FFF;
+	background: #c0c0c0;
+}
+
+.mensagens {
+	color: #ff3c3c;
+	list-style: none;
+}

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>CarRepair</title>
+	<link href="estilo/estilo.css" rel="stylesheet" type="text/css" />
+	<link id="favicon" rel="shortcut icon" href="imagens/favicon-16x16.png" type="image/png" />
+</h:head>
+<h:body id="consulta">
+	<div id="geral">
+		<div id="topo">
+			<div id="topo_imagem"></div>
+			<div id="topo_texto">
+				<h2>Controle de Serviços</h2>
+				<h2>
+					<h:outputLabel value="#{usuarioMB.getNomeUsuario()}"></h:outputLabel>
+				</h2>
+			</div>
+		</div>
+
+		<div id="barraMenu">
+			<ul>
+				<li><a href="index.xhtml">Principal</a></li>
+				<li><a href="veiculo.xhtml">Veículo</a></li>
+				<li><a href="cliente.xhtml">Cliente</a></li>
+				<li><a href="manteros.xhtml">Manter O.S.</a></li>
+				<li><a href="consultaos.xhtml" id="con">Consultar O.S.</a></li>
+				<li><a href="listaos.xhtml">Listar O.S.</a></li>
+				<li><h:form>
+						<h:commandLink value="Sair" actionListener="#{usuarioMB.sair}" />
+					</h:form></li>
+			</ul>
+		</div>
+		<div id="conteudo">
+			<h3>Consultar Ordem de Serviço</h3>
+			<h:messages styleClass="mensagens" />
+			<!-- ALTERACOES SOMENTE DAQUI ABAIXO -->
+			<h:form>
+				<h:panelGrid columns="3">
+					<h:outputLabel value="Numero O.S.: " />
+					<h:inputText id="num" value="#{oservicoConsultaMB.osAtual.numero}"
+						converterMessage="Número da O.S. invalido!" maxlength="7" />
+					<h:commandButton name="buscar" value=">>"
+						action="#{oservicoConsultaMB.buscarPorNumero}" />
+				</h:panelGrid>
+			</h:form>
+			<p></p>
+			<f:view>
+				<h:form rendered="#{oservicoConsultaMB.mostrarVeiculo}">
+					<h:panelGrid columns="3" cellpadding="5" cellspacing="0" border="0"
+						width="630">
+						<h:column>
+							<h:outputLabel value="Data: " />
+							<h:outputLabel value="#{oservicoConsultaMB.osAtual.data}"
+								converter="javax.faces.DateTime" />
+						</h:column>
+						<h:column>
+							<h:outputLabel value="Placa: " />
+							<h:outputLabel
+								value="#{oservicoConsultaMB.osAtual.veiculo.placa}" />
+						</h:column>
+						<h:column>
+							<h:outputLabel value="Status: " />
+							<h:outputLabel value="#{oservicoConsultaMB.osAtual.status}" />
+						</h:column>
+						<h:column>
+							<h:outputLabel value="Veículo: " />
+							<h:outputLabel
+								value="#{oservicoConsultaMB.osAtual.veiculo.marca}" />
+							<h:outputLabel value=" - " />
+							<h:outputLabel
+								value="#{oservicoConsultaMB.osAtual.veiculo.modelo}" />
+							<f:attribute name="colspan" value="2" />
+						</h:column>
+						<h:column>
+							<h:outputLabel value="Ano\Mod: " />
+							<h:outputLabel
+								value="#{oservicoConsultaMB.osAtual.veiculo.anoFabricacao}/#{oservicoConsultaMB.osAtual.veiculo.anoModelo}" />
+						</h:column>
+						<h:column>
+							<h:outputLabel value="KM: " />
+							<h:outputLabel value="#{oservicoConsultaMB.osAtual.kmServico}" />
+						</h:column>
+					</h:panelGrid>
+					<p></p>
+					<h:panelGrid columns="1" cellpadding="5" cellspacing="0" border="0"
+						width="500">
+
+						<f:facet name="header">
+							<h4><h:outputLabel value="Descrição"></h:outputLabel></h4>
+								</f:facet>
+							<h:inputTextarea readonly="true"
+								value="#{oservicoConsultaMB.osAtual.descricao}" cols="92"
+								rows="5" />
+					
+
+					</h:panelGrid>
+				</h:form>
+			</f:view>
+			<p></p>
+			<f:view>
+
+				<h:form rendered="#{oservicoConsultaMB.mostrarPecas}">
+					<h4><h:outputLabel value="Peças"></h:outputLabel></h4>
+					<h:dataTable var="pecas"
+						value="#{oservicoConsultaMB.osAtual.pecas}" styleClass="tabela"
+						headerClass="cabecalho"
+						columnClasses="data,nfiscal,codigo,nome,qtde,valor,total">
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Data NF" />
+							</f:facet>
+							<h:outputText value="#{pecas.dtNota}"
+								converter="javax.faces.DateTime" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="NFiscal" />
+							</f:facet>
+							<h:outputText value="#{pecas.nfiscal}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cod. Peça" />
+							</f:facet>
+							<h:outputText value="#{pecas.codPeca}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Nome" />
+							</f:facet>
+							<h:outputText value="#{pecas.nome}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Qtde" />
+							</f:facet>
+							<h:outputText value="#{pecas.qtde}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Valor" />
+							</f:facet>
+							<h:outputText value="#{pecas.valor}">
+								<f:convertNumber type="currency" />
+							</h:outputText>
+
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Total" />
+							</f:facet>
+							<h:outputText value="#{pecas.valor*pecas.qtde}">
+								<f:convertNumber type="currency" />
+							</h:outputText>
+						</h:column>
+					</h:dataTable>
+					<p></p>
+					<h:outputText value="Total da Ordem de Serviço:  " />
+					<h:outputText value="#{oservicoConsultaMB.totalOs}">
+						<f:convertNumber type="currency" />
+					</h:outputText>
+				</h:form>
+				<p></p>
+			</f:view>
+			<!-- ALTERACOES SOMENTE DAQUI ACIMA -->
+		</div>
+		<div style="clear: both"></div>
+		<div id="rodape">Trabalho de Laboratório de Engenharia</div>
+	</div>
+</h:body>
+</html>
+
+

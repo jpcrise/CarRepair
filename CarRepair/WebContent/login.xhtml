@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>CarRepair</title>
+	<link href="estilo/estilo.css" rel="stylesheet" type="text/css" />
+	<link id="favicon" rel="shortcut icon" href="imagens/favicon-16x16.png" type="image/png" />
+</h:head>
+<h:body>
+	<div id="geral">
+		<div id="topo">
+			<div id="topo_imagem"></div>
+			<div id="topo_texto">
+				<h2>Controle de Serviços</h2>
+				<h2>
+					<h:outputText id="bemVindo" value="Bem vindo(a) ao sistema." />
+				</h2>
+			</div>
+		</div>
+
+		<div id="barraMenu">
+			<ul>
+
+			</ul>
+		</div>
+		<div id="conteudo">
+
+			<h:messages styleClass="mensagens" />
+			<!-- ALTERACOES SOMENTE DAQUI ABAIXO -->
+
+			<f:view>
+
+				<div class="login-screen">
+					<div class="app-title">
+						<h2>Login</h2>
+					</div>
+					<h:form id="formLogin" styleClass="login">
+
+						<h:panelGrid id="gridLoginSenha" columns="1">
+
+							<h:inputText id="login-name" label="Usuario" styleClass="txt"
+								value="#{usuarioMB.usuario.login}" required="true"
+								validatorMessage="Usuario é obrigatório!"
+								pt:placeholder="Usuário" />
+
+							<h:inputSecret id="login-pass" label="Senha"
+								value="#{usuarioMB.usuario.senha}" required="true"
+								pt:placeholder="Senha" validatorMessage="Senha é obrigatória!"
+								styleClass="txt" />
+
+							<h:commandButton id="botao" value="Entrar"
+								action="#{usuarioMB.logar}" styleClass="btn" />
+						</h:panelGrid>
+					</h:form>
+
+
+				</div>
+
+				<p></p>
+			</f:view>
+
+			<!-- ALTERACOES SOMENTE DAQUI ACIMA -->
+		</div>
+		<div style="clear: both"></div>
+		<div id="rodape">Trabalho de Laboratório de Engenharia</div>
+	</div>
+</h:body>
+</html>
+
+

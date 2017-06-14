@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>CarRepair</title>
+	<link href="estilo/estilo.css" rel="stylesheet" type="text/css" />
+	<link id="favicon" rel="shortcut icon" href="imagens/favicon-16x16.png"
+		type="image/png" />
+</h:head>
+<h:body id="manter">
+	<div id="geral">
+		<div id="topo">
+			<div id="topo_imagem"></div>
+			<div id="topo_texto">
+				<h2>Controle de Serviços</h2>
+				<h2>
+					<h:outputLabel value="#{usuarioMB.getNomeUsuario()}"></h:outputLabel>
+				</h2>
+			</div>
+		</div>
+
+		<div id="barraMenu">
+			<ul>
+				<li><a href="index.xhtml">Principal</a></li>
+				<li><a href="veiculo.xhtml">Veículo</a></li>
+				<li><a href="cliente.xhtml">Cliente</a></li>
+				<li><a href="manteros.xhtml" id="man">Manter O.S.</a></li>
+				<li><a href="consultaos.xhtml">Consultar O.S.</a></li>
+				<li><a href="listaos.xhtml">Listar O.S.</a></li>
+				<li><h:form>
+						<h:commandLink value="Sair" actionListener="#{usuarioMB.sair}" />
+					</h:form></li>
+			</ul>
+		</div>
+		<div id="conteudo">
+			<h3>Manter Ordem de Serviço</h3>
+			<h:messages styleClass="mensagens" />
+			<!-- ALTERACOES SOMENTE DAQUI ABAIXO -->
+
+			<f:view>
+
+				<h:form rendered="#{oservicoMB.mostrarVeiculo}">
+					<h:panelGrid columns="3">
+
+						<h:column rendered="#{oservicoMB.osAtual.status == 'ABERTA'}"></h:column>
+						<h:column rendered="#{oservicoMB.osAtual.status == 'ABERTA'}">
+							<h:outputLabel value="Número: " />
+							<h:outputLabel id="num" value="#{oservicoMB.osAtual.numero} "
+								converterMessage="Número da O.S. invalido!" maxlength="7"
+								disabled="#{oservicoMB.mostrarVeiculo}" />
+						</h:column>
+						<h:column rendered="#{oservicoMB.osAtual.status == 'ABERTA'}"></h:column>
+						<h:column rendered="#{oservicoMB.osAtual.status == 'ABERTA'}">
+							<h:outputLabel value="Data: " />
+							<h:outputLabel value="#{oservicoMB.osAtual.data}"
+								converter="javax.faces.DateTime" />
+						</h:column>
+						<h:column rendered="#{oservicoMB.osAtual.status == 'ABERTA'}"></h:column>
+						<h:column rendered="#{oservicoMB.osAtual.status == 'ABERTA'}">
+							<h:outputLabel value="Status: " />
+							<h:outputLabel id="status" value=" #{oservicoMB.osAtual.status}"
+								disabled="true" />
+						</h:column>
+
+						<h:column>
+							<h:outputLabel value="Veículo: " />
+							<h:outputLabel value="#{oservicoMB.osAtual.veiculo.marca}" />
+							<h:outputLabel value=" - #{oservicoMB.osAtual.veiculo.modelo}" />
+						</h:column>
+						<h:column></h:column>
+						<h:column>
+							<h:outputLabel value="Ano/Mod: " />
+							<h:outputLabel
+								value="#{oservicoMB.osAtual.veiculo.anoFabricacao}/#{oservicoMB.osAtual.veiculo.anoModelo}" />
+						</h:column>
+					</h:panelGrid>
+				</h:form>
+
+				<h:form>
+					<h:panelGrid columns="3">
+
+						<h:outputLabel value="Placa:" />
+						<h:panelGroup>
+							<h:inputText id="placa"
+								value="#{oservicoMB.osAtual.veiculo.placa}" maxlength="7"
+								validatorMessage="A placa deve ter 7 digitos, 3 letras e 4 numeros!"
+								disabled="#{oservicoMB.mostrarVeiculo}">
+								<f:validateRegex pattern="[A-Z a-z]{3}\d{4}" />
+							</h:inputText>
+							<h:outputLabel value=" " />
+							<h:commandButton name="buscar" value=">>"
+								action="#{oservicoMB.buscarPorPlaca}" />
+
+						</h:panelGroup>
+						<h:outputLabel></h:outputLabel>
+
+
+						<h:outputLabel value="KM:" />
+						<h:inputText id="km" value="#{oservicoMB.osAtual.kmServico}"
+							converterMessage="Km invalida!" maxlength="7"
+							disabled="#{!oservicoMB.abrirOs and !oservicoMB.osAtual.status == 'ABERTA'}" />
+						<h:outputLabel></h:outputLabel>
+						<h:outputLabel value="Descrição:" />
+						
+						<h:inputTextarea id="descricao"
+							value="#{oservicoMB.osAtual.descricao}" cols="81" rows="5"
+							disabled="#{!oservicoMB.abrirOs and !oservicoMB.osAtual.status == 'ABERTA'}" />
+						<h:outputLabel></h:outputLabel>
+
+
+						<h:commandButton action="#{oservicoMB.refresh}" value="Limpar" />
+						<h:panelGroup rendered="#{oservicoMB.osAtual.status != 'FECHADA'}">
+							<h:commandButton action="#{oservicoMB.abrir}" value="Abrir O.S."
+								disabled="#{!oservicoMB.abrirOs||oservicoMB.osAtual.status == 'ABERTA'}" />
+
+							<h:outputLabel value=" " />
+
+							<h:commandButton action="#{oservicoMB.fechar}"
+								value="Fechar O.S."
+								disabled="#{oservicoMB.osAtual.status != 'ABERTA'}" />
+
+							<h:outputLabel value=" " />
+
+							<h:commandButton action="pecas.xhtml" value="Incluir Itens"
+								disabled="#{oservicoMB.osAtual.status != 'ABERTA'}" />
+
+							<h:outputLabel value=" " />
+
+							<h:commandButton action="#{oservicoMB.atualizar}"
+								value="Atualizar"
+								disabled="#{oservicoMB.osAtual.status != 'ABERTA'}" />
+						</h:panelGroup>
+
+					</h:panelGrid>
+				</h:form>
+
+				<p></p>
+				<h:form rendered="#{oservicoMB.mostrarPecas}">
+					<h:outputLabel value="Peças"></h:outputLabel>
+					<h:dataTable var="pecas" value="#{oservicoMB.osAtual.pecas}"
+						styleClass="tabela" headerClass="cabecalho"
+						columnClasses="data,nfiscal,codigo,nome,qtde,valor,total">
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Data NF" />
+							</f:facet>
+							<h:outputText value="#{pecas.dtNota}"
+								converter="javax.faces.DateTime" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="NFiscal" />
+							</f:facet>
+							<h:outputText value="#{pecas.nfiscal}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cod. Peça" />
+							</f:facet>
+							<h:outputText value="#{pecas.codPeca}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Nome" />
+							</f:facet>
+							<h:outputText value="#{pecas.nome}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Qtde" />
+							</f:facet>
+							<h:outputText value="#{pecas.qtde}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Valor" />
+							</f:facet>
+							<h:outputText value="#{pecas.valor}">
+								<f:convertNumber currencySymbol="R$" type="currency" />
+							</h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Total" />
+							</f:facet>
+							<h:outputText value="#{pecas.valor*pecas.qtde}">
+								<f:convertNumber type="currency" />
+							</h:outputText>
+						</h:column>
+
+					</h:dataTable>
+					<p></p>
+					<h:outputText value="Total da Ordem de Serviço:  " />
+					<h:outputText value="#{oservicoMB.totalOs}">
+						<f:convertNumber type="currency" />
+					</h:outputText>
+				</h:form>
+
+			</f:view>
+			<p></p>
+			<!-- ALTERACOES SOMENTE DAQUI ACIMA -->
+		</div>
+		<div style="clear: both"></div>
+		<div id="rodape">Trabalho de Laboratório de Engenharia</div>
+	</div>
+</h:body>
+</html>

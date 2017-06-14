@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>CarRepair</title>
+	<link href="estilo/estilo.css" rel="stylesheet" type="text/css" />
+	<link id="favicon" rel="shortcut icon" href="imagens/favicon-16x16.png"
+		type="image/png" />
+</h:head>
+<h:body id="manter">
+	<div id="geral">
+		<div id="topo">
+			<div id="topo_imagem"></div>
+			<div id="topo_texto">
+				<h2>Controle de Serviços</h2>
+				<h2>
+					<h:outputLabel value="#{usuarioMB.getNomeUsuario()}"></h:outputLabel>
+				</h2>
+			</div>
+		</div>
+
+		<div id="barraMenu">
+			<ul>
+				<li><a href="index.xhtml">Principal</a></li>
+				<li><a href="veiculo.xhtml">Veículo</a></li>
+				<li><a href="cliente.xhtml">Cliente</a></li>
+				<li><a href="manteros.xhtml" id="manter">Manter O.S.</a></li>
+				<li><a href="consultaos.xhtml">Consultar O.S.</a></li>
+				<li><a href="listaos.xhtml">Listar O.S.</a></li>
+				<li><h:form>
+						<h:commandLink value="Sair" actionListener="#{usuarioMB.sair}" />
+					</h:form></li>
+			</ul>
+		</div>
+		<div id="conteudo">
+			<h3>Incluir Itens na O.S.</h3>
+			<h:messages styleClass="mensagens" />
+			<!-- ALTERACOES SOMENTE DAQUI ABAIXO -->
+			<h:form>
+				<h:panelGrid columns="3">
+					<h:outputLabel value="Número O.S.:" />
+					<h:outputLabel value="#{pecaMB.pecaAtual.id_os}" />
+					<!-- sem nada -->
+
+					<h:outputLabel value="Codigo:" />
+					<h:inputText id="codigo" value="#{pecaMB.pecaAtual.codPeca}"
+						converterMessage="Codigo inválido! digite somente numeros!" />
+					<!-- sem nada -->
+
+					<h:outputLabel value="Descrição:" />
+					<h:inputText id="nome" value="#{pecaMB.pecaAtual.nome}" />
+					<!-- sem nada -->
+
+					<h:outputLabel value="Nota Fiscal:" />
+					<h:inputText id="nfiscal" value="#{pecaMB.pecaAtual.nfiscal}"
+						converterMessage="Nota Fiscal inválida! digite somente numeros!" />
+					<!-- sem nada -->
+
+					<h:outputLabel value="Valor Un.:" />
+					<h:inputText id="valor" value="#{pecaMB.pecaAtual.valor}"
+						converterMessage="Valor inválido! Digite valor monetário!">
+						<f:convertNumber pattern="#,##0.00" />
+					</h:inputText>
+					<!-- sem nada -->
+
+					<h:outputLabel value="Qtde:" />
+					<h:inputText id="qtde" value="#{pecaMB.pecaAtual.qtde}"
+						converterMessage="Quantidade inválida! digite somente numeros!" />
+					<!-- sem nada -->
+
+					<h:outputLabel value="Data NF.:" />
+					<h:inputText id="dtNota" value="#{pecaMB.pecaAtual.dtNota}"
+						converter="javax.faces.DateTime" timeZone="America/Brasilia" maxlength="10"
+						converterMessage="Formato de data não reconhecido!">
+					</h:inputText>
+					<!-- sem nada -->
+
+					<h:commandButton action="#{pecaMB.refresh}" value="Limpar" />
+					<h:panelGroup>
+						<h:commandButton action="#{pecaMB.adicionar}" value="Adicionar" />
+						<h:commandButton action="manteros.xhtml" value="Voltar" />
+					</h:panelGroup>
+
+				</h:panelGrid>
+			</h:form>
+			<p></p>
+			<!-- ALTERACOES SOMENTE DAQUI ACIMA -->
+		</div>
+		<div style="clear: both"></div>
+		<div id="rodape">Trabalho de Laboratório de Engenharia</div>
+	</div>
+</h:body>
+</html>
+
+

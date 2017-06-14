@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>CarRepair</title>
+	<link href="estilo/estilo.css" rel="stylesheet" type="text/css" />
+	<link id="favicon" rel="shortcut icon" href="imagens/favicon-16x16.png" type="image/png" />
+</h:head>
+<h:body id="veiculo">
+	<div id="geral">
+		<div id="topo">
+			<div id="topo_imagem"></div>
+			<div id="topo_texto">
+				<h2>Controle de Serviços</h2>
+				<h2>
+					<h:outputLabel value="#{usuarioMB.getNomeUsuario()}"></h:outputLabel>
+				</h2>
+			</div>
+		</div>
+
+		<div id="barraMenu">
+			<ul>
+				<li><a href="index.xhtml">Principal</a></li>
+				<li><a href="veiculo.xhtml" id="vei">Veículo</a></li>
+				<li><a href="cliente.xhtml">Cliente</a></li>
+				<li><a href="manteros.xhtml">Manter O.S.</a></li>
+				<li><a href="consultaos.xhtml">Consultar O.S.</a></li>
+				<li><a href="listaos.xhtml">Listar O.S.</a></li>
+				<li><h:form>
+						<h:commandLink value="Sair" actionListener="#{usuarioMB.sair}" />
+					</h:form></li>
+			</ul>
+		</div>
+		<div id="conteudo">
+			<h3>Veículo</h3>
+			<h:messages styleClass="mensagens" />
+			<!-- ALTERACOES SOMENTE DAQUI ABAIXO -->
+			<h:form>
+				<h:panelGrid columns="3">
+					<h:outputLabel value="Placa:" />
+					<h:inputText id="placa" value="#{veiculoMB.veicAtual.placa}"
+						maxlength="7"
+						validatorMessage="A placa deve ter 7 digitos, 3 letras e 4 numeros!"
+						disabled="#{!veiculoMB.btnAdicionar||!veiculoMB.btnAtualizar}">
+						<f:validateRegex pattern="[A-Z a-z]{3}\d{4}" />
+					</h:inputText>
+					<h:commandButton name="buscar" value=">>"
+						action="#{veiculoMB.buscarPorPlaca}" />
+
+					<h:outputLabel value="CNPJ/CPF:" />
+					<h:inputText id="cnpj" value="#{veiculoMB.veicAtual.cnpjCliente}"
+						maxlength="14" validatorMessage="CPF ou CNPJ inválido!">
+						<f:validateLength minimum="11" maximum="14" />
+					</h:inputText>
+					<!-- sem nada -->
+
+					<h:outputLabel value="Marca:" />
+					<h:inputText id="marca" value="#{veiculoMB.veicAtual.marca}" />
+					<!-- sem nada -->
+
+					<h:outputLabel value="Modelo:" />
+					<h:inputText id="modelo" value="#{veiculoMB.veicAtual.modelo}" />
+					<!-- sem nada -->
+
+					<h:outputLabel value="Ano Fab.:" />
+					<h:inputText id="anoFab"
+						value="#{veiculoMB.veicAtual.anoFabricacao}" maxlength="4"
+						validatorMessage="O ano de fabricação deve conter somente números!">
+						<f:validateRegex pattern="\d{4}" />
+					</h:inputText>
+					<!-- sem nada -->
+
+					<h:outputLabel value="Ano Mod.:" />
+					<h:inputText id="anoMod" value="#{veiculoMB.veicAtual.anoModelo}"
+						maxlength="4"
+						validatorMessage="O ano do modelo deve conter somente números!">
+						<f:validateRegex pattern="\d{4}" />
+					</h:inputText>
+					<!-- sem nada -->
+
+					<h:outputLabel value="Status:" />
+					<h:inputText value="#{veiculoMB.veicAtual.status}" disabled="true" />
+					<!-- sem nada -->
+
+					<h:commandButton action="#{veiculoMB.refresh}" value="Limpar" />
+					<h:panelGroup>
+						<h:commandButton action="#{veiculoMB.adicionar}" value="Adicionar"
+							disabled="#{veiculoMB.btnAdicionar}" />
+						<h:outputLabel value=" " />
+						<h:commandButton action="#{veiculoMB.atualizar}" value="Atualizar"
+							disabled="#{veiculoMB.btnAtualizar}" />
+					</h:panelGroup>
+					<!-- sem nada -->
+
+				</h:panelGrid>
+			</h:form>
+			<p></p>
+			<!-- ALTERACOES SOMENTE DAQUI ACIMA -->
+		</div>
+		<div style="clear: both"></div>
+		<div id="rodape">Trabalho de Laboratório de Engenharia</div>
+	</div>
+</h:body>
+</html>
+
+

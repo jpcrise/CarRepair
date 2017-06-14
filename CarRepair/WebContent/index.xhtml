@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>CarRepair</title>
+	<link href="estilo/estilo.css" rel="stylesheet" type="text/css" />
+	<link id="favicon" rel="shortcut icon" href="imagens/favicon-16x16.png" type="image/png" />
+</h:head>
+<h:body id="index">
+	<div id="geral">
+		<div id="topo">
+			<div id="topo_imagem"></div>
+			<div id="topo_texto">
+				<h2>Controle de Serviços</h2>
+				<h2><h:outputLabel value="#{usuarioMB.getNomeUsuario()}"></h:outputLabel></h2>
+			</div>
+
+		</div>
+
+		<div id="barraMenu">
+			<ul>
+
+				<li><a href="index.xhtml" id="ind">Principal</a></li>
+				<li><a href="veiculo.xhtml">Veículo</a></li>
+				<li><a href="cliente.xhtml">Cliente</a></li>
+				<li><a href="manteros.xhtml">Manter O.S.</a></li>
+				<li><a href="consultaos.xhtml">Consultar O.S.</a></li>
+				<li><a href="listaos.xhtml">Listar O.S.</a></li>
+				<li><h:form><h:commandLink value="Sair" actionListener="#{usuarioMB.sair}" /></h:form></li>
+
+			</ul>
+			
+		</div>
+		<div id="conteudo">
+			<h3>Veículos em Serviço</h3>
+			<h:messages styleClass="mensagens" />
+			<!-- ALTERACOES SOMENTE DAQUI ABAIXO -->
+			<f:view>
+				<f:metadata>
+					<f:viewAction action="#{veiculoMB.listarManutencao}" />
+				</f:metadata>
+
+				<h:form>
+					<h:dataTable var="veic" value="#{veiculoMB.veiculos}"
+						styleClass="tabela" headerClass="cabecalho"
+						columnClasses="placa,marca,modelo,afab,amod,status">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Placa" />
+							</f:facet>
+							<h:outputText value="#{veic.placa}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Marca" />
+							</f:facet>
+							<h:outputText value="#{veic.marca}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Modelo" />
+							</f:facet>
+							<h:outputText value="#{veic.modelo}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Ano Fab." />
+							</f:facet>
+							<h:outputText value="#{veic.anoFabricacao}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Ano Mod." />
+							</f:facet>
+							<h:outputText value="#{veic.anoModelo}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Status" />
+							</f:facet>
+							<h:outputText value="#{veic.status}" />
+						</h:column>
+					</h:dataTable>
+
+				</h:form>
+				<p></p>
+			</f:view>
+			<!-- ALTERACOES SOMENTE DAQUI ACIMA -->
+		</div>
+		<div style="clear: both"></div>
+		<div id="rodape">Trabalho de Laboratório de Engenharia</div>
+	</div>
+</h:body>
+</html>
